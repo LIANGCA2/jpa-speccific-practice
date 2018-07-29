@@ -1,7 +1,10 @@
 package com.oocl.jpaspecificpratice.responsity;
 
+
 import com.oocl.jpaspecificpratice.model.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface GroupResponsity  extends JpaRepository<Group,Integer> {
+@Repository
+public interface GroupRepository extends JpaRepository<Group,Integer> {
 }

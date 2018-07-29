@@ -27,7 +27,7 @@ private KlassResponsity klassResponsity;
 
     @Transactional
     @PostMapping(value = "/klass",produces=MediaType.APPLICATION_JSON_VALUE)
-    public Klass insertLeader(@RequestBody Klass klass){
+    public Klass addKlass(@RequestBody Klass klass){
         Leader leader = klass.getLeader();
                 if(leader!=null){
                     leader.setKlass(klass);

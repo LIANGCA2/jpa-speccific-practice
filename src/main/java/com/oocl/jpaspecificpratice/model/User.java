@@ -1,23 +1,19 @@
 package com.oocl.jpaspecificpratice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
-@Table(name="user")
+@Table(name = "user")
 @Entity
 public class User {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
-    @ManyToMany(cascade =CascadeType.ALL)
-    @JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "userList")
     private List<Group> groupList;
-
 
     public User() {
     }
@@ -49,4 +45,19 @@ public class User {
     public void setGroupList(List<Group> groupList) {
         this.groupList = groupList;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (id == null || obj == null || getClass() != obj.getClass())
+            return false;
+        User that = (User) obj;
+        return id.equals(that.id);
+    }
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id.hashCode();
+    }
+
 }

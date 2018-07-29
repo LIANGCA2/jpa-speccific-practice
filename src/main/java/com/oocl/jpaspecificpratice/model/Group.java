@@ -1,24 +1,31 @@
 package com.oocl.jpaspecificpratice.model;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "tw_group")
+@Entity
 public class Group {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @ManyToMany(mappedBy = "group")
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "user_group",joinColumns= @JoinColumn(
+            name = "user_id"
+    ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "group_id"
+            ))
     private List<User> userList;
+
+    public Group() {
+    }
 
     public Group(String name) {
         this.name = name;
-    }
-
-    public Group() {
     }
 
     public Integer getId() {
