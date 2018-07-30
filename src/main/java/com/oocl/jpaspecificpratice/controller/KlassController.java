@@ -34,9 +34,7 @@ private KlassResponsity klassResponsity;
                 }
 
         return  klassResponsity.save(klass);
-    }git
-
-
+    }
 
     @Transactional
     @GetMapping(value = "/klasses",produces = MediaType.APPLICATION_JSON_VALUE)
